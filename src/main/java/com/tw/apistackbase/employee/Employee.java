@@ -1,17 +1,17 @@
 package com.tw.apistackbase.employee;
 
 public class Employee {
-    private String employeeID;
+    private int id;
     private String name ;
     private int age;
     private String gender;
 
-    public String getEmployeeID() {
-        return employeeID;
+    public int getId() {
+        return id;
     }
 
-    public void setEmployeeID(String employeeID) {
-        this.employeeID = employeeID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

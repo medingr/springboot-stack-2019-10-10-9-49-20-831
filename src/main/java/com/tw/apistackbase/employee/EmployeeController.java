@@ -19,5 +19,21 @@ public class EmployeeController {
         return employeeList;
     }
 
+    @PostMapping(path = "/addEmployee", produces = {"application/json"})
+    public ResponseEntity<String> addEmployee(@RequestBody List<Employee> employeeToAdd){
+        employeeList.addAll(employeeToAdd);
+        return ResponseEntity.ok("Employee/s has been added!");
+    }
+
+    @PutMapping(path = "/updateEmployee/{employeeID}", produces = {"application/json"})
+    public ResponseEntity<String> updateEmployee(@PathVariable int employeeID, @RequestBody Employee employee) {
+        Employee employeeToUpdate = employeeList.stream()
+                .filter( employeeInList -> employeeInList.getId() == employeeID )
+                .findFirst()
+                .orElse(null);
+         int index = employeeList.indexOf(employeeToUpdate);
+         employeeList.set(index , employee);
+         return ResponseEntity.ok("Employee/s has been updated!");
+    }
 
 }
