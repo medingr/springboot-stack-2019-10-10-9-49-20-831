@@ -36,4 +36,14 @@ public class EmployeeController {
          return ResponseEntity.ok("Employee/s has been updated!");
     }
 
+    @DeleteMapping(path = "/deleteEmployee/{employeeID}", produces = {"application/json"})
+    public ResponseEntity<String> deleteEmployee(@PathVariable int employeeID){
+        Employee employeeToUpdate = employeeList.stream()
+                .filter( employeeInList -> employeeInList.getId() == employeeID )
+                .findFirst()
+                .orElse(null);
+        employeeList.remove(employeeToUpdate);
+        return ResponseEntity.ok("Employee/s has been deleted!");
+    }
+
 }
